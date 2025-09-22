@@ -17,5 +17,12 @@ public class MainClassTest extends MainClass
         Assert.assertTrue("Число " + actualNumber + ", меньше " + expectedNumber , actualNumber > expectedNumber);
     }
 
+    @Test
+    public void testGetClassString () {
+        String expectedText1 = "hello";
+        String expectedText2 = "Hello";
+        String actualText = this.getClassString();
+        Assert.assertTrue("Строка «" + actualText + "» должна содержать подстроку " + expectedText1 + " или " + expectedText2 , actualText.contains(expectedText1) || actualText.contains(expectedText2));
+    }
 }
 
