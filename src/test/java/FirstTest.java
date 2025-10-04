@@ -102,6 +102,69 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testCheckWordsSearch() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Java",
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementForPresent(
+                By.xpath("//*[contains(@text,'Java')]"),
+                "Cannot find 'Java' in result search",
+                15);
+
+        assertElementContainsText(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='JavaScript']"),
+                "As a result search",
+                "Java"
+        );
+
+        assertElementContainsText(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='Java']"),
+                "As a result search",
+                "Java"
+        );
+
+        assertElementContainsText(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and contains(@text, 'JavaServer Pages')]"),
+                "As a result search",
+                "Java"
+        );
+
+        assertElementContainsText(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and contains(@text, 'Java Platform, Standard Edition')]"),
+                "As a result search",
+                "Java"
+        );
+
+        assertElementContainsText(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and contains(@text, 'JavaFX')]"),
+                "As a result search",
+                "Java"
+        );
+
+        assertElementContainsText(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and contains(@text, 'Java Virtual Machine')]"),
+                "As a result search",
+                "Java"
+        );
+    }
+
     @After
     public void tearDown() {
         driver.quit();
@@ -156,5 +219,15 @@ public class FirstTest {
         );
     }
 
+    private void assertElementContainsText(By by, String error_element_message, String expected_text) {
+        // Ждем появление элемента
+        WebElement element = waitForElementForPresent(by, "Cannot find element", 10);
+        String actual_text = element.getText();
+
+        Assert.assertTrue(
+                error_element_message + " - '" + actual_text + "' - does not contain - " + expected_text, // для удобства можно прописать только начало ошибки
+                actual_text.contains(expected_text)
+        );
+    }
 
 }
