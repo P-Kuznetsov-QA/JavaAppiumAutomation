@@ -51,6 +51,57 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testCancelSearch() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Java",
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementForPresent(
+                By.xpath("//*[contains(@text,'язык программирования')]"),
+                "Cannot find 'язык программирования' in result search",
+                15);
+
+        assertElementHasText(
+                By.xpath("//*[contains(@resource-id,'org.wikipedia:id/page_list_item_title')]"),
+                "Search result",
+                "Java"
+        );
+
+        assertElementHasText(
+                By.xpath("//*[contains(@text,'JavaScript')]"),
+                "Search result",
+                "JavaScript"
+        );
+
+        waitForElementAndClick(
+                MobileBy.AccessibilityId("Удалить запрос"),
+                "Cannot find button clear result search",
+                5
+        );
+
+        waitForElementNotPresent(
+                By.xpath("//*[contains(@text,'язык программирования')]"),
+                "The search result is still displayed",
+                15
+        );
+    }
+
     @After
     public void tearDown() {
         driver.quit();
