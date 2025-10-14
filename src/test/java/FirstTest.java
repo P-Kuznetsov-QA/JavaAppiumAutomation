@@ -421,6 +421,41 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testAssertHasTitle() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Fifa",
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='FIFA (серия игр)']"),
+                "Cannot find result search by 'Fifa'",
+                10
+        );
+
+        assertElementPresent(
+                By.xpath("//*[@text='FIFA (серия игр)']"),
+                "The title article is not displayed"
+        );
+    }
+
+
+
 
     @After
     public void tearDown() {
@@ -630,6 +665,35 @@ public class FirstTest {
 
     }
 
+    private int getAmountOfElements(By by) {
+        List elements = driver.findElements(by);
+        return elements.size();
+    }
+
+    private void assertElementNotPresent(By by, String error_message) {
+        int amount_of_elements = getAmountOfElements(by);
+        if (amount_of_elements > 0) {
+            String default_message = "An element '" + by.toString() + "' supposed to be not present";
+            throw new AssertionError(default_message + " " + error_message);
+        }
+    }
+
+    private void assertElementPresent(By by, String error_message) {
+        int amount_of_elements = getAmountOfElements(by);
+        if (amount_of_elements == 0) {
+            String default_message = "An element '" + by.toString() + "' supposed to be present";
+            throw new AssertionError(default_message + " " + error_message);
+        }
+    }
+
+    private String waitForElementAndAttribute(By by, String attribute, String error_message, long timeOfSeconds) {
+        WebElement element = waitForElementForPresent(
+                by,
+                error_message,
+                timeOfSeconds
+        );
+        return element.getAttribute(attribute);
+    }
 
 
 }
