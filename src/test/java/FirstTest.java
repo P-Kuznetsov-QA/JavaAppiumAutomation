@@ -240,6 +240,187 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testSaveArticleToMyList() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Selenium",
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='Selenium']"),
+                "Cannot find 'Selenium' in result search",
+                10);
+
+        waitForElementForPresent(
+                By.xpath("//*[contains(@text, 'инструмент для автоматизации действий веб-браузера и тестирования веб-приложений')]"),
+                "Cannot find article title",
+                10);
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/article_menu_bookmark"),
+                "Cannot find button 'save'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.Button[@resource-id='org.wikipedia:id/snackbar_action']"),
+                "Cannot find button 'Add in the List'",
+                5
+        );
+
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.TextView[@text='Создать новый']"),
+                "Cannot find button 'Создать новый'",
+                5
+        );
+
+
+        waitForElementAndSendKeys(
+                By.xpath("//android.widget.EditText[@resource-id='org.wikipedia:id/text_input']"),
+                "Test List",
+                "Cannot find text input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.id("android:id/button1"),
+                "Cannot find button 'OK'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.ImageButton[@content-desc='Перейти вверх']"),
+                "Cannot find button 'back'",
+                5
+        );
+
+        waitForElementAndClear(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Cannot find search input after return",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Android",
+                "Cannot find search input after return",
+                5
+        );
+
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='Android']"),
+                "Cannot find result search by Android",
+                5
+        );
+
+        waitForElementForPresent(
+                By.xpath("//*[@text='Android']"),
+                "Cannot find article 'Android'",
+                15
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/article_menu_bookmark"),
+                "Cannot find button 'save'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.Button[@resource-id='org.wikipedia:id/snackbar_action']"),
+                "Cannot find button 'Add in the List'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/item_title"),
+                "Cannot find title new create List",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.ImageButton[@content-desc='Перейти вверх']"),
+                "Cannot find button 'back'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.ImageButton"),
+                "Cannot find button 'back'",
+                5
+        );
+
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/largeLabel']"),
+                "Cannot find navigation button 'My List'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/smallLabel' and @text='Мои списки']"),
+                "Cannot find created folder",
+                5
+        );
+
+        waitForElementForPresent(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/item_title' and @text='Test List']"),
+                "Cannot find save article in the list",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/item_title' and @text='Test List']"),
+                "Cannot find save article in the list",
+                5
+        );
+
+        swipeElementToLeft(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/page_list_item_description' and @text='инструмент для автоматизации действий веб-браузера и тестирования веб-приложений']"),
+                "Cannot find article 'Selenium'"
+        );
+
+        waitForElementNotPresent(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/page_list_item_description' and @text='инструмент для автоматизации действий веб-браузера и тестирования веб-приложений']"),
+                "The saved article is still displayed",
+                5
+        );
+
+        waitForElementForPresent(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/page_list_item_description' and @text='бесплатная и открытая операционная система для мобильных устройств, разрабатываемая компанией Google']"),
+                "Cannot find save article 'Android'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.TextView[@resource-id='org.wikipedia:id/page_list_item_title' and @text='Android']"),
+                "Cannot find title two save article",
+                5
+        );
+
+        assertElementHasText(
+                By.xpath("//*[contains(@text, 'Android')]"),
+                "Title article 'Android'",
+                "Android"
+        );
+    }
+
 
     @After
     public void tearDown() {
