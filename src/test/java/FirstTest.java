@@ -456,6 +456,169 @@ public class FirstTest {
 
 
 
+    @Test
+    public void testNumberResponsesSearch() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+
+        String searchText = "Дискография Toxis";
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                searchText,
+                "Cannot find Search input",
+                5
+        );
+
+
+        String search_result_locator = "//*[@resource-id='org.wikipedia:id/page_list_item_title']";
+        waitForElementForPresent(
+                By.xpath(search_result_locator),
+                "Cannot find request " + searchText,
+                15
+        );
+
+        int amountOfSearchResults = getAmountOfElements(
+                By.xpath(search_result_locator)
+        );
+
+        Assert.assertTrue(
+                "We found too few results",
+                amountOfSearchResults > 0);
+
+    }
+
+    @Test
+    public void testEmptyResultSearch() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+
+        String searchText = "прпропропорпро";
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                searchText,
+                "Cannot find Search input",
+                5
+        );
+
+
+        String resultSearch = "//*[@resource-id= 'org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_title']";
+        String emptySearch = "//*[@text='Ничего не найдено']";
+
+        waitForElementForPresent(
+                By.xpath(emptySearch),
+                "Cannot find text 'Ничего не найдено'",
+                10
+        );
+
+
+        assertElementNotPresent(
+                By.xpath(resultSearch),
+                "We've found some results by result " + searchText
+        );
+    }
+
+    @Test
+    public void testChangeOrientationSearchResult() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+        String search_line = "Java";
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Java",
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='Java']"),
+                "Cannot find 'Java' in result search by " + search_line,
+                15);
+
+        String title_before_rotation = waitForElementAndAttribute(
+                By.xpath("(//android.widget.TextView[@text='Java'])[1]"),
+                "text",
+                "Cannot find description of article",
+                15
+        );
+
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+
+        String title_after_rotation = waitForElementAndAttribute(
+                By.xpath("(//android.widget.TextView[@text='Java'])[1]"),
+                "text",
+                "Cannot find description of article",
+                15
+        );
+
+        Assert.assertEquals(
+                "Article title have been changed after screen rotation",
+                title_before_rotation,
+                title_after_rotation
+        );
+    }
+
+    @Test
+    public void testCheckSearchArticleInBackground() {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
+                "Cannot find Skip onboarding",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
+                "Cannot find Search input",
+                5
+        );
+        String search_line = "Java";
+        waitForElementAndSendKeys(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Java",
+                "Cannot find Search input",
+                5
+        );
+
+        waitForElementForPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='Java']"),
+                "Cannot find 'Java' in result search by " + search_line,
+                15);
+
+        driver.runAppInBackground(Duration.ofSeconds(2));
+
+        waitForElementForPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='Java']"),
+                "Cannot find 'Java' after returning in background",
+                15);
+
+    }
+
 
     @After
     public void tearDown() {
