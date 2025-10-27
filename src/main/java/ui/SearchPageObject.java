@@ -10,7 +10,8 @@ public class SearchPageObject extends MainPageObject{
             SEARCH_INPUT = "org.wikipedia:id/search_src_text",
             SEARCH_CLOSE_BUTTON = "org.wikipedia:id/search_close_btn",
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_container']//*[@text='{SUBSTRING}']",
-            SEARCH_RETURN_BUTTON = "//android.widget.ImageButton";
+            SEARCH_RETURN_BUTTON = "//android.widget.ImageButton",
+            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL =  "//android.view.ViewGroup[.//*[@text='{TITLE}'] and .//*[@text='{DESCRIPTION}']]";
 
     public SearchPageObject(AppiumDriver driver)
     {
@@ -21,8 +22,9 @@ public class SearchPageObject extends MainPageObject{
     {
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
     }
-
-
+    private static String getResultSearchElementByTitleAndDescription(String title, String description) {
+        return SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL.replace("{TITLE}", title).replace("{DESCRIPTION}", description);
+    }
     /* TEMPLATES METHODS */
 
     public void initSearchInput()
@@ -57,7 +59,11 @@ public class SearchPageObject extends MainPageObject{
         this.waitForElementForPresent(By.xpath(search_result_xpath), "Cannot find search result", 15);
     }
 
-
+    public void waitForSearchResultByTitleAndDescription(String title, String description)
+    {
+        String search_result_xpath = getResultSearchElementByTitleAndDescription(title, description);
+        this.waitForElementForPresent(By.xpath(search_result_xpath), "Cannot find search result by title - '" + title + "' and description - '" + description + "'", 15);
+    }
 
     public void checkContainsWordResultSearch(String substring, String expected_line)
     {

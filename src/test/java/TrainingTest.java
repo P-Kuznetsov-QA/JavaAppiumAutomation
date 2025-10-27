@@ -113,4 +113,21 @@ public class TrainingTest extends CoreTestCase {
 
     }
 
+    // Ex9*: Рефакторинг темплейта
+    @Test
+    public void testSearchResultWithTitleAndDescription() {
+        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject.clickSkipOnboarding();
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("c");
+        SearchPageObject.waitForSearchResultByTitleAndDescription("C", "страница значений в проекте Викимедиа");
+        SearchPageObject.waitForSearchResultByTitleAndDescription("Call of Duty", "серия компьютерных игр");
+        SearchPageObject.waitForSearchResultByTitleAndDescription("Creative Commons", "огранизация, создатель свободных лицензий");
+
+
+    }
+
+
 }
