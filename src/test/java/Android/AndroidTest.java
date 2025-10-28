@@ -1,22 +1,12 @@
+package Android;
+
 import lib.CoreTestCase;
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.ScreenOrientation;
 import ui.*;
 
 
 
-public class TrainingTest extends CoreTestCase {
-
-    private MainPageObject MainPageObject;
-
-    protected void setUp () throws Exception
-    {
-     super.setUp();
-
-     MainPageObject = new MainPageObject(driver);
-    }
+public class AndroidTest extends CoreTestCase {
 
 
     // Ex3: Тест: отмена поиска
