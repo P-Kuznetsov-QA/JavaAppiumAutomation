@@ -1,17 +1,17 @@
 package ui;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 
-public class SearchPageObject extends MainPageObject{
+abstract public class SearchPageObject extends MainPageObject{
 
-    private static final String
-            SEARCH_INIT_ELEMENT = "xpath://*[contains(@text,'Поиск по Википедии')]",
-            SEARCH_INPUT = "id:org.wikipedia:id/search_src_text",
-            SEARCH_CLOSE_BUTTON = "id:org.wikipedia:id/search_close_btn",
-            SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://*[@resource-id='org.wikipedia:id/search_results_container']//*[@text='{SUBSTRING}']",
-            SEARCH_RETURN_BUTTON = "xpath://android.widget.ImageButton",
-            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL =  "xpath://android.view.ViewGroup[.//*[@text='{TITLE}'] and .//*[@text='{DESCRIPTION}']]";
+    protected static String
+            SEARCH_INIT_ELEMENT,
+            SEARCH_INPUT,
+            SEARCH_CLOSE_BUTTON,
+            SEARCH_RESULT_BY_SUBSTRING_TPL,
+            SEARCH_RETURN_BUTTON,
+            SEARCH_EMPTY_RESULT_ELEMENT,
+            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL;
 
     public SearchPageObject(AppiumDriver driver)
     {
@@ -56,7 +56,7 @@ public class SearchPageObject extends MainPageObject{
     public void waitForSearchResult(String substring)
     {
         String search_result_xpath = getResultSearchElement(substring);
-        this.waitForElementForPresent(search_result_xpath, "Cannot find search result", 15);
+        this.waitForElementForPresent(search_result_xpath, "Cannot find search result -" + search_result_xpath, 15);
     }
 
     public void waitForSearchResultByTitleAndDescription(String title, String description)
