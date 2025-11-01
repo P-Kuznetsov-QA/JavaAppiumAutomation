@@ -1,14 +1,13 @@
 package ui;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 
-public class NavigationUi extends MainPageObject{
+public class NavigationUiPageObject extends MainPageObject{
 
-    private static final String
+    protected static String
             MY_LISTS_LINK = "xpath://*[@text='Мои списки']";
 
-    public NavigationUi(AppiumDriver driver)
+    public NavigationUiPageObject(AppiumDriver driver)
     {
         super(driver);
     }

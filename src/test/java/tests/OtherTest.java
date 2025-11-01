@@ -1,89 +1,11 @@
-import lib.CoreTestCase;
-import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.ScreenOrientation;
-import ui.ArticlePageObject;
-import ui.MainPageObject;
-import ui.OnboardingPageObject;
-import ui.SearchPageObject;
+package tests;
 
-import java.time.Duration;
+import lib.CoreTestCase;
+
 
 public class OtherTest extends CoreTestCase {
 
-    private MainPageObject MainPageObject;
 
-    protected void setUp () throws Exception
-    {
-        super.setUp();
-
-        MainPageObject = new MainPageObject(driver);
-    }
-
-//    @Test
-//    public void testOnboardingSwipe() {
-//        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-//
-//        OnboardingPageObject.clickNextPageOnboarding();
-//        OnboardingPageObject.swipeLeftToPrimaryPage("Списки для чтения с синхронизацией");
-//        OnboardingPageObject.swipeLeftToPrimaryPage("Отправлять отчёты об использовании");
-//        OnboardingPageObject.clickStartOnboarding();
-//
-//    }
-//
-//    @Test
-//    public void testSearch()
-//    {
-//        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-//        OnboardingPageObject.clickSkipOnboarding();
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Java");
-//        SearchPageObject.waitForSearchResult("язык программирования");
-//
-//    }
-//
-//    @Test
-//    public void testSearchInputHasText() {
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[contains(@text,'ПРОПУСТИТЬ')]"),
-//                "Cannot find Skip onboarding",
-//                5
-//        ); // из-за более новой версии при запуске приложения открывается onboarding, поэтому требуется дополнительно его пропускать
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[contains(@text,'Поиск по Википедии')]"),
-//                "Cannot find Search input",
-//                5
-//        );
-//
-//        MainPageObject.assertElementHasText(
-//                By.id("org.wikipedia:id/search_src_text"),
-//                "Search input",
-//                "Поиск по Википедии"
-//        );
-//    }
-//
-//
-//    @Test
-//    public void testSwipeSearchArticle() {
-//        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-//        OnboardingPageObject.clickSkipOnboarding();
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Selenium");
-//        SearchPageObject.openArticleResultSearchWithSubstring("Selenium");
-//
-//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-//        ArticlePageObject.waitForTitleElement("Selenium");
-//        ArticlePageObject.swipeToFooter();
-//
-//    }
-//
-//
-//
 //    @Test
 //    public void testNumberResponsesSearch() {
 //        MainPageObject.waitForElementAndClick(
