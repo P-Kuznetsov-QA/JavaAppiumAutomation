@@ -1,6 +1,8 @@
 package ui;
 
 import io.appium.java_client.AppiumDriver;
+import lib.Platform;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class SearchPageObject extends MainPageObject{
 
@@ -10,10 +12,11 @@ abstract public class SearchPageObject extends MainPageObject{
             SEARCH_CLOSE_BUTTON,
             SEARCH_RESULT_BY_SUBSTRING_TPL,
             SEARCH_RETURN_BUTTON,
+            SEARCH_MAIN_PAGE,
             SEARCH_EMPTY_RESULT_ELEMENT,
             SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL;
 
-    public SearchPageObject(AppiumDriver driver)
+    public SearchPageObject(RemoteWebDriver driver)
     {
         super(driver);
     }
@@ -86,7 +89,17 @@ abstract public class SearchPageObject extends MainPageObject{
 
     public void returnMainPage()
     {
-        this.waitForElementAndClick(SEARCH_RETURN_BUTTON, "Cannot find and click return button", 5);
+        if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()){
+            this.waitForElementAndClick(SEARCH_RETURN_BUTTON, "Cannot find and click return button", 5);
+        } else {
+            this.waitForElementAndClick(SEARCH_MAIN_PAGE,"Cannot find and click return main page button", 5);
+        }
+
+    }
+
+    public void emptyResult()
+    {
+        this.waitForElementForPresent(SEARCH_EMPTY_RESULT_ELEMENT, "Cannot find empty result search", 5);
     }
 
 }

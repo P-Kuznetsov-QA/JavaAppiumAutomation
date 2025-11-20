@@ -1,6 +1,7 @@
 package ui.android;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.MyListsPageObject;
 
 public class AndroidMyListsPageObject extends MyListsPageObject {
@@ -11,8 +12,7 @@ public class AndroidMyListsPageObject extends MyListsPageObject {
         ARTICLE_BY_DESCRIPTION_TPL = "xpath://android.widget.TextView[@resource-id='org.wikipedia:id/page_list_item_description' and @text=\"{ARTICLE_DESCRIPTION}\"]";
     }
 
-    public AndroidMyListsPageObject(AppiumDriver driver)
-    {
+    public AndroidMyListsPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 }

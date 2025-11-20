@@ -1,6 +1,7 @@
 package ui.ios;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.NavigationUiPageObject;
 
 public class IOSNavifationUiPageObject extends NavigationUiPageObject {
@@ -8,8 +9,7 @@ public class IOSNavifationUiPageObject extends NavigationUiPageObject {
         MY_LISTS_LINK = "xpath://*[@text='Мои списки']";
     }
 
-    public IOSNavifationUiPageObject (AppiumDriver driver)
-    {
+    public IOSNavifationUiPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 }

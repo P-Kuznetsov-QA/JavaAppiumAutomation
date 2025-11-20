@@ -1,18 +1,18 @@
-package ui.ios;
+package ui.mobile_web;
 
-import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.MyListsPageObject;
 
-public class IOSMyListsPageObject extends MyListsPageObject {
-
+public class MWMyListsPageObject extends MyListsPageObject {
     static {
         FOLDER_BY_NAME_TPL = "xpath://*[@resource-id=\"org.wikipedia:id/item_title\" and @text=\"{FOLDER_NAME}\"]";
-        ARTICLE_BY_TITLE_TPL = "xpath://android.widget.TextView[@resource-id=\"org.wikipedia:id/page_list_item_title\" and @text=\"{ARTICLE_TITLE}\"]";
+        ARTICLE_BY_TITLE_TPL = "xpath://h3[text()='{ARTICLE_TITLE}']";
+        REMOVE_FROM_SAVED_BUTTON = "xpath://li[@title='{ARTICLE_TITLE}']//span[contains(@class, 'mf-icon-unStar-progressive')]";
         ARTICLE_BY_DESCRIPTION_TPL = "xpath://android.widget.TextView[@resource-id='org.wikipedia:id/page_list_item_description' and @text=\"{ARTICLE_DESCRIPTION}\"]";
     }
 
-    public IOSMyListsPageObject(RemoteWebDriver driver) {
+    public MWMyListsPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 }
+

@@ -2,6 +2,7 @@ package ui.factories;
 
 import io.appium.java_client.AppiumDriver;
 import lib.Platform;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.OnboardingPageObject;
 import ui.android.AndroidOnboardingPageObject;
 import ui.ios.IOSOnboardingPageObject;
@@ -9,12 +10,11 @@ import ui.ios.IOSOnboardingPageObject;
 
 public class OnboardingPageObjectFactory {
 
-    public static OnboardingPageObject get(AppiumDriver driver)
-    {
-        if (Platform.getInstance().isAndroid()){
+    public static OnboardingPageObject get(RemoteWebDriver driver) {
+        if (Platform.getInstance().isAndroid()) {
             System.out.println("Creating AndroidOnboardingPageObject");
             return new AndroidOnboardingPageObject(driver);
-        } else  {
+        } else {
             System.out.println("Creating IOSOnboardingPageObject");
             return new IOSOnboardingPageObject(driver);
         }

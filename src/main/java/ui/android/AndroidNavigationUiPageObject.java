@@ -1,6 +1,7 @@
 package ui.android;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.NavigationUiPageObject;
 
 public class AndroidNavigationUiPageObject extends NavigationUiPageObject {
@@ -9,8 +10,7 @@ public class AndroidNavigationUiPageObject extends NavigationUiPageObject {
         MY_LISTS_LINK = "xpath://*[@text='Мои списки']";
     }
 
-    public AndroidNavigationUiPageObject(AppiumDriver driver)
-    {
+    public AndroidNavigationUiPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 }

@@ -1,6 +1,7 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
 import org.junit.Test;
 import ui.ArticlePageObject;
 import ui.OnboardingPageObject;
@@ -9,27 +10,35 @@ import ui.factories.ArticlePageObjectFactory;
 import ui.factories.OnboardingPageObjectFactory;
 import ui.factories.SearchPageObjectFactory;
 
-public class ArticleTest extends CoreTestCase {
+public class ArticleTests extends CoreTestCase {
 
     // Ex6: Тест: assert title
     @Test
     public void testAssertHasTitle() {
-        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
-        OnboardingPageObject.clickSkipOnboarding();
+        if(Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()){
+            OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
+            OnboardingPageObject.clickSkipOnboarding();
+        } else {
+            System.out.println("Skip onboarding page");
+        }
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Fifa");
-        SearchPageObject.openArticleResultSearchWithSubstring("FIFA (серия игр)");
+        SearchPageObject.typeSearchLine("Ozon");
+        SearchPageObject.openArticleResultSearchWithSubstring("Ozon");
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-        ArticlePageObject.assertTitlePresent("FIFA (серия игр)");
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
+        ArticlePageObject.assertTitlePresent("Ozon");
     }
 
     @Test
     public void testSwipeFooterSearchArticle() {
-        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
-        OnboardingPageObject.clickSkipOnboarding();
+        if(Platform.getInstance().isIOS() || Platform.getInstance().isAndroid()){
+            OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
+            OnboardingPageObject.clickSkipOnboarding();
+        } else {
+            System.out.println("Skip onboarding page");
+        }
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();

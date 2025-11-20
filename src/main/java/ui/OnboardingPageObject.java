@@ -1,6 +1,7 @@
 package ui;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class OnboardingPageObject extends MainPageObject {
 
@@ -19,7 +20,7 @@ abstract public class OnboardingPageObject extends MainPageObject {
 
 
 
-    public OnboardingPageObject (AppiumDriver driver)
+    public OnboardingPageObject (RemoteWebDriver driver)
     {
         super(driver);
     }

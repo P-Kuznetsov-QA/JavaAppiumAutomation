@@ -3,7 +3,7 @@ package tests;
 import lib.CoreTestCase;
 
 
-public class OtherTest extends CoreTestCase {
+public class OtherTests extends CoreTestCase {
 
 
 //    @Test
