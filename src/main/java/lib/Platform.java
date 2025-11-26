@@ -1,18 +1,15 @@
 package lib;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+
 
 public class Platform {
     private static final String PLATFORM_IOS = "ios";
@@ -111,7 +108,7 @@ public class Platform {
         return my_platform.equals(platform);
     }
 
-    private String getPlatformVar() {
+    public String getPlatformVar() {
         return System.getenv("PLATFORM");
     }
 

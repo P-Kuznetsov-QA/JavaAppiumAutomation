@@ -1,6 +1,5 @@
 package ui.ios;
 
-import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.SearchPageObject;
 
@@ -13,9 +12,9 @@ public class IOSSearchPageObject extends SearchPageObject {
         SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://XCUIElementTypeStaticText[contains(@name,'{SUBSTRING}')]";
         SEARCH_RETURN_BUTTON = "xpath://XCUIElementTypeStaticText[@name='Отменить']";
         SEARCH_EMPTY_RESULT_ELEMENT = "id:Ничего не найдено";
-        SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://*[@name='{TITLE}' and /*[@value='{DESCRIPTION}']";
+        SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://XCUIElementTypeCell[.//XCUIElementTypeStaticText[@name='{TITLE}'] and .//XCUIElementTypeStaticText[@name='{DESCRIPTION}']]";
     }
-
+    //XCUIElementTypeStaticText[@name="C"]
     public IOSSearchPageObject(RemoteWebDriver driver) {
         super(driver);
     }

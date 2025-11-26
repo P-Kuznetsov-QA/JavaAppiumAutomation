@@ -1,14 +1,11 @@
 package ui.factories;
 
-import io.appium.java_client.AppiumDriver;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.MyListsPageObject;
 import ui.android.AndroidMyListsPageObject;
 import ui.ios.IOSMyListsPageObject;
-import ui.ios.IOSNavifationUiPageObject;
 import ui.mobile_web.MWMyListsPageObject;
-import ui.mobile_web.MWNavigationUiPageObject;
 
 public class MyListsPageObjectFactory {
 

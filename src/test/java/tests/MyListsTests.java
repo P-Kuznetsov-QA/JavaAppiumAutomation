@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import org.junit.Assert;
@@ -15,6 +17,8 @@ public class MyListsTests extends CoreTestCase {
 
     // Ex5: Тест: Сохранение двух статей
     @Test
+    @DisplayName("Saving two articles")
+    @Description("We are saving 2 articles to my list. After that, we check the removal of the article from the list.")
     public void testSaveArticleToMyList() {
         if (Platform.getInstance().isAndroid() || Platform.getInstance().isIOS()) {
             OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);

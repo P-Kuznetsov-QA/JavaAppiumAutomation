@@ -1,6 +1,6 @@
 package ui;
 
-import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -16,6 +16,7 @@ public class NavigationUiPageObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Open navigation menu")
     public void openNavigation() {
         this.waitForElementAndClickWithJS(
                 OPEN_NAVIGATION,
@@ -24,6 +25,7 @@ public class NavigationUiPageObject extends MainPageObject {
         );
     }
 
+    @Step("Go to the My List Page")
     public void clickMyLists() {
         if (Platform.getInstance().isMobileWeb()) {
             openNavigation();

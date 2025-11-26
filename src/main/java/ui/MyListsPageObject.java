@@ -1,8 +1,7 @@
 package ui;
 
-import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.Platform;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class MyListsPageObject extends MainPageObject{
@@ -38,6 +37,7 @@ public class MyListsPageObject extends MainPageObject{
         return ARTICLE_BY_DESCRIPTION_TPL.replace("{ARTICLE_DESCRIPTION}", article_description);
     }
 
+    @Step("Opening folder by name")
     public void openFolderByName(String name_of_folder)
     {
         if (Platform.getInstance().isMobileWeb()){
@@ -53,6 +53,7 @@ public class MyListsPageObject extends MainPageObject{
 
     }
 
+    @Step("Removing article by swipe")
     public void swipeByArticleToDelete(String article_title)
     {
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);
@@ -82,19 +83,21 @@ public class MyListsPageObject extends MainPageObject{
         }
     }
 
-
+    @Step("Waiting article will no longer be displayed")
     public void waitForArticleToDisappearByTitle(String article_title)
     {
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);
         this.waitForElementNotPresent(article_title_xpath, "Saved article still present with title " + article_title, 5);
     }
 
+    @Step("Waiting for the article to be displayed")
     public void waitForArticleToAppearByTitle(String article_title)
     {
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);
         this.waitForElementForPresent(article_title_xpath, "Saved article  present with title " + article_title, 5);
     }
 
+    @Step("Opening the article")
     public void clickArticleTitleToOpen(String article_title)
     {
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);

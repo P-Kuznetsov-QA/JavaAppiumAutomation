@@ -1,14 +1,11 @@
 package ui.factories;
 
-import io.appium.java_client.AppiumDriver;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ui.NavigationUiPageObject;
 import ui.android.AndroidNavigationUiPageObject;
 import ui.ios.IOSNavifationUiPageObject;
-import ui.ios.IOSSearchPageObject;
 import ui.mobile_web.MWNavigationUiPageObject;
-import ui.mobile_web.MWSearchPageObject;
 
 public class NavigationUiPageObjectFactory {
     public static NavigationUiPageObject get(RemoteWebDriver driver) {
